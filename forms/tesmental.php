@@ -79,10 +79,6 @@ $pertanyaans = getPertanyaan(2);
 
 <body class="index-page">
 
-    <?php include __DIR__ . '/../includes/header_user.php'; ?>
-    <link href="../assets/css/main.css" rel="stylesheet" />
-
-
     <!-- Custom CSS for Quiz -->
     <link href="../assets/css/tes.css" rel="stylesheet" />
 

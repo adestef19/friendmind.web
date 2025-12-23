@@ -1,7 +1,8 @@
 <header class="navbar custom-navbar">
+
     <!-- Back Button -->
     <div class="nav-left">
-        <a href="../dashboard.php" class="back-btn">
+        <a href="../user/dashboard.php" class="back-btn">
             <i class="bi bi-arrow-left"></i> 
         </a>
     </div>

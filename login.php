@@ -32,7 +32,7 @@ if (isset($_POST['login'])) {
     $_SESSION['is_logged_in'] = true;
     $_SESSION['user_id'] = $data['id'];
     $_SESSION['email'] = $data['email'];
-    $_SESSION['username'] = $data['username'];
+    $_SESSION['nama'] = $data['nama'];
 
     header("Location: user/dashboard.php");
     exit;
