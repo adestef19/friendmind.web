@@ -102,6 +102,8 @@ if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
           <!-- <button class="lihat-btn">Lihat semua</button> -->
         </div>
         <p class="desc">Disini terlihat hasil tes terakhir kali kamu</p>
+
+        <h2>8</h2>
       </div>
 
     </div>
