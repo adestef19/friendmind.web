@@ -1,0 +1,120 @@
+.quiz-section {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.question {
+  margin-bottom: 30px;
+}
+.question h4 {
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+}
+.options label {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.options label:hover {
+  background-color: #f0f0f0;
+}
+.options input[type="radio"] {
+  margin-right: 10px;
+}
+.btn-calculate {
+  background-color: rgb(0, 186, 0);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+.btn-calculate:hover {
+  background-color: rgb(0, 110, 0);
+}
+#result {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 5px;
+  display: none;
+}
+.disclaimer {
+  font-size: 0.9em;
+  color: #666;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.hero-label {
+  display: inline-block;
+  background-color: #d5f5e3;
+  color: #10bc69;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===== HEADER TES MENTAL ===== */
+.custom-navbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 15px 25px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* kiri */
+.nav-left {
+  justify-self: start;
+}
+
+/* tengah */
+.nav-center {
+  justify-self: center;
+}
+
+/* kanan (kosong, penyeimbang) */
+.nav-right {
+  justify-self: end;
+}
+
+/* tombol back */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 30px;
+  color: #333;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  color: #1abc9c;
+  transform: scale(1.1);
+}

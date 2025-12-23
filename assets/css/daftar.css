@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #e8fff3;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+.logo-img {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.logo h1 {
+  font-size: 28px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.green {
+  color: #1cb87a;
+}
+
+.subtitle {
+  margin-top: 4px;
+  color: #444;
+  font-size: 14px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.register-form {
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 360px;
+  margin: 20px auto;
+  padding: 25px 30px;
+  text-align: left;
+}
+
+.register-form h3 {
+  text-align: center;
+  color: #1cb87a;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.register-form p {
+  text-align: center;
+  color: #444;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  align-items: left;
+}
+
+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  font-size: 12px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.checkbox input {
+  margin-right: 8px;
+  margin-top: 3px;
+}
+
+.checkbox a {
+  color: #1cb87a;
+  text-decoration: none;
+}
+
+button {
+  width: 100%;
+  background-color: #1cb87a;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #169a64;
+}
+
+.login {
+  text-align: center;
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+.login a {
+  color: #1cb87a;
+  text-decoration: none;
+}
