@@ -7,29 +7,6 @@ if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
   exit;
 }
 
-if (!isset($_SESSION['user_id'])) {
-    echo "Session user tidak ditemukan";
-    exit;
-}
-
-$user_id = $_SESSION['user_id'];
-
-// ================= QUERY KE TABEL users =================
-$stmt = mysqli_prepare($conn, "SELECT nama, email FROM users WHERE id = ?");
-mysqli_stmt_bind_param($stmt, "i", $user_id);
-mysqli_stmt_execute($stmt);
-
-$result = mysqli_stmt_get_result($stmt);
-$user = mysqli_fetch_assoc($result);
-
-if (!$user) {
-    echo "Data user tidak ditemukan";
-    exit;
-}
-
-$nama  = $user['nama'];
-$email = $user['email'];
-
 ?>
 <!DOCTYPE html>
 <html lang="id">
