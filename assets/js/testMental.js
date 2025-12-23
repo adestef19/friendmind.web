@@ -1,18 +1,26 @@
-function calculateScore() {
-  const form = document.getElementById("depressionTest");
-  let totalScore = 0;
-  const totalQuestions = 10;
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("calculate");
 
-  // Hitung skor dari semua pertanyaan
-  for (let i = 1; i <= totalQuestions; i++) {
-    const answer = form["q" + i].value;
-    if (answer === "") {
-      alert("Pastikan semua pertanyaan sudah dijawab sebelum menghitung skor.");
-      return;
-    }
-    totalScore += parseInt(answer);
+  if (!btn) {
+    console.error("Button calculate tidak ditemukan");
+    return;
   }
 
-  // Arahkan ke halaman hasil tes dengan membawa skor sebagai parameter URL
-  window.location.href = "hasiltesmental.php?score=" + totalScore;
-}
+  btn.addEventListener("click", () => {
+    const form = document.getElementById("depressionTest");
+    const checkedRadios = form.querySelectorAll('input[type="radio"]:checked');
+
+    if (checkedRadios.length === 0) {
+      alert("Silakan jawab pertanyaan terlebih dahulu.");
+      return;
+    }
+
+    let totalScore = 0;
+
+    checkedRadios.forEach((radio) => {
+      totalScore += parseInt(radio.value);
+    });
+
+    window.location.href = "hasiltesmental.php?score=" + totalScore;
+  });
+});

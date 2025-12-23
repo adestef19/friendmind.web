@@ -1,26 +1,46 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
-//* ambil pertanyaan dan opsi jawaban
-function getOpsiJawaban()
+//* function ambil opsi jawaban
+function getOpsiJawaban($pertanyaanId)
 {
     global $db;
     $sql = "SELECT * FROM opsi_jawaban WHERE pertanyaan_id = ?";
     $stmt = $db->prepare($sql);
-    $stmt->bind_param('s', $pertanyaanId);
+    $stmt->bind_param('i', $pertanyaanId);
     $stmt->execute();
+
     $result = $stmt->get_result();
-    return $result->fetch_assoc();
+    $opsi = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $opsi[] = $row;
+    }
+
+    return $opsi;
 }
 
-function getPertanyaan()
+
+//* function ambil pertanyaan 
+function getPertanyaan($tesId)
 {
     global $db;
     $sql = "SELECT * FROM pertanyaan WHERE tes_id = ?";
     $stmt = $db->prepare($sql);
+    $stmt->bind_param('i', $tesId);
     $stmt->execute();
+
     $result = $stmt->get_result();
-    return $result->fetch_assoc();
+    $data = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+    return $data;
 }
+
+
+$pertanyaans = getPertanyaan(2);
 
 
 ?>
@@ -53,103 +73,88 @@ function getPertanyaan()
     <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
     <!-- Main CSS File -->
-    <<<<<<< HEAD
-        <link href="../assets/css/main.css" rel="stylesheet" />
+    <link href="../assets/css/main.css" rel="stylesheet" />
+    <script src="../assets/js/testMental.js"></script>
 </head>
 
 <body class="index-page">
 
     <?php include __DIR__ . '/../includes/header_user.php'; ?>
-    =======
     <link href="../assets/css/main.css" rel="stylesheet" />
 
 
     <!-- Custom CSS for Quiz -->
     <link href="../assets/css/tes.css" rel="stylesheet" />
 
+    <?php include __DIR__ . '/../includes/header_quiz.php'; ?>
 
-    <script>
-        function calculateScore() {
-            const form = document.getElementById("depressionTest");
-            let totalScore = 0;
-            const totalQuestions = 10;
+    <main class="main">
+        <!-- Quiz Section -->
+        <section id="quiz" class="quiz-section">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title text-center">
+                    <span class="hero-label">Tes Kesehatan Mental</span>
+                    <h2>Tes Kesehatan Mental</h2>
+                    <p>Jawab pertanyaan berikut dengan jujur untuk mengetahui kondisi mental Anda dalam 2 minggu terakhir. Tes ini membantu Anda memahami diri sendiri lebih baik.</p>
+                </div>
+                <div class="quiz-container">
+                    <p class="disclaimer">Tes ini hanya untuk tujuan informasi. Jika skor Anda tinggi, konsultasikan dengan ahli kesehatan mental. Ini bukan pengganti diagnosis profesional. FriendMind berkomitmen untuk privasi Anda.</p>
 
-            // Hitung skor dari semua pertanyaan
-            for (let i = 1; i <= totalQuestions; i++) {
-                const answer = form["q" + i].value;
-                if (answer === "") {
-                    alert("Pastikan semua pertanyaan sudah dijawab sebelum menghitung skor.");
-                    return;
-                }
-                totalScore += parseInt(answer);
-            }
-
-            // Arahkan ke halaman hasil tes dengan membawa skor sebagai parameter URL
-            window.location.href = "../forms/hasiltesmental.php?score=" + totalScore;
-        }
-    </script>
-
-
-    <body class="index-page">
-
-        <?php include __DIR__ . '/../includes/header_quiz.php'; ?>
-        >>>>>>> 927abcab0cd8e658f5e58c8fa8f50eee2149a429
-
-        <main class="main">
-            <!-- Quiz Section -->
-            <section id="quiz" class="quiz-section">
-                <div class="container" data-aos="fade-up">
-                    <div class="section-title text-center">
-                        <span class="hero-label">Tes Kesehatan Mental</span>
-                        <h2>Tes Kesehatan Mental</h2>
-                        <p>Jawab pertanyaan berikut dengan jujur untuk mengetahui kondisi mental Anda dalam 2 minggu terakhir. Tes ini membantu Anda memahami diri sendiri lebih baik.</p>
-                    </div>
-                    <div class="quiz-container">
-                        <p class="disclaimer">Tes ini hanya untuk tujuan informasi. Jika skor Anda tinggi, konsultasikan dengan ahli kesehatan mental. Ini bukan pengganti diagnosis profesional. FriendMind berkomitmen untuk privasi Anda.</p>
-
-                        <form id="depressionTest" action="" method="post">
+                    <form id="depressionTest" action="" method="post">
+                        <?php foreach ($pertanyaans as $index => $pertanyaan) : ?>
                             <div class="question">
-                                <h4>1. Apakah Anda merasa sedih, murung, atau depresi?</h4>
+                                <h4><?= ($index + 1) ?>. <?= $pertanyaan['isi_pertanyaan'] ?></h4>
+
                                 <div class="options">
-                                    <label><input type="radio" name="q1" value="0"> Tidak pernah</label>
-                                    <label><input type="radio" name="q1" value="1"> Beberapa hari</label>
-                                    <label><input type="radio" name="q1" value="2"> Lebih dari setengah hari</label>
-                                    <label><input type="radio" name="q1" value="3"> Hampir setiap hari</label>
+                                    <?php foreach (getOpsiJawaban($pertanyaan['pertanyaan_id']) as $opsi) : ?>
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="q<?= $pertanyaan['pertanyaan_id'] ?>"
+                                                value="<?= $opsi['skor'] ?>"
+                                                required>
+                                            <?= $opsi['isi_opsi'] ?>
+                                        </label>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
+                        <?php endforeach; ?>
 
-                            <div class="text-center">
-                                <button type="button" class="btn-calculate" onclick="calculateScore()">Hitung Skor</button>
-                            </div>
-                        </form>
 
-                        <div id="result"></div>
-                    </div>
+                        <div class="text-center">
+                            <button type="button" class="btn-calculate" id="calculate">Hitung Skor</button>
+                        </div>
+                    </form>
+
+                    <div id="result"></div>
                 </div>
-            </section>
-            <!-- /Quiz Section -->
-        </main>
+            </div>
+        </section>
+        <!-- /Quiz Section -->
+    </main>
 
-        <?php include __DIR__ . '/../includes/footer.php'; ?>
+    <?php include __DIR__ . '/../includes/footer.php'; ?>
 
-        <!-- Scroll Top -->
-        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-        <!-- Preloader -->
-        <div id="preloader"></div>
+    <!-- Preloader -->
+    <div id="preloader"></div>
 
-        <!-- Vendor JS Files -->
-        <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="../assets/vendor/php-email-form/validate.js"></script>
-        <script src="../assets/vendor/aos/aos.js"></script>
-        <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
-        <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
-        <script src="../assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-        <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-        <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
+    <script src="../assets/vendor/aos/aos.js"></script>
+    <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-        <!-- Main JS File -->
-        <script src="../assets/js/main.js"></script>
+    <!-- Main JS File -->
+    <script src="../assets/js/main.js"></script>
 
-        <!-- Custom JS for Quiz -->
-        <script src="../assets/js/testMental.js"></script>
+    <!-- Custom JS for Quiz -->
+
+
+</body>
