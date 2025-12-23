@@ -66,7 +66,7 @@
                 Kesehatan Mental Itu Penting. Yuk, mulai dengan tes singkat
                 untuk memahami dirimu lebih baik.
               </p>
-              <a href="dashboard.php" class="btn-start">Mulai Tes</a>
+              <a href="user/dashboard.php" class="btn-start">Mulai Tes</a>
             </div>
           </div>
         </div>
@@ -516,7 +516,7 @@
       <!-- /Contact Section -->
     </main>
 
-  <?php include __DIR__ . '/../app/includes/footer.php' ?>
+  <?php include __DIR__ . '/includes/footer.php' ?>
 
     <!-- Scroll Top -->
     <a
