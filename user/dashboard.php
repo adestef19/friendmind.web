@@ -51,59 +51,59 @@ if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true) {
             id="display-profile">
         </div>
 
-    <div class="profile-info">
-      <h2 class="username"><?= htmlspecialchars($nama) ?></h2>
-      <span class="email"><?= htmlspecialchars($email) ?></span>
-      <p class="subtitle">
-        Lanjutkan mengetahui jati dirimu dengan mengikuti kuisioner kami!
-      </p>
-    </div>
-
-      <div class="card-container">
-
-        <div class="card highlight">
-          <div class="card-header">
-            <img
-              src="../assets/img/tesdepresi.png"
-              alt="Tes Mental"
-              class="icon">
-            <div>
-              <h3>Tes Kesehatan Mental</h3>
-              <p>Mulai untuk mengetahui kondisi depresi kamu saat ini!</p>
-            </div>
-          </div>
-          <a href="../forms/tesmental.php">
-            <button class="btn">+ Mulai kuisioner!</button>
-          </a>
+        <div class="profile-info">
+          <h2 class="username"><?= $_SESSION['nama'] ?></h2>
+          <span class="email"><?= $_SESSION['email'] ?></span>
+          <p class="subtitle">
+            Lanjutkan mengetahui jati dirimu dengan mengikuti kuisioner kami!
+          </p>
         </div>
 
-        <div class="card">
-          <div class="card-header">
-            <img
-              src="../assets/img/tespersonality.png"
-              alt="Tes Kepribadian"
-              class="icon">
-            <div>
-              <h3>Tes Kepribadian</h3>
-              <p>Cari tahu kepribadian kamu melalui tes ini!</p>
+        <div class="card-container">
+
+          <div class="card highlight">
+            <div class="card-header">
+              <img
+                src="../assets/img/tesdepresi.png"
+                alt="Tes Mental"
+                class="icon">
+              <div>
+                <h3>Tes Kesehatan Mental</h3>
+                <p>Mulai untuk mengetahui kondisi depresi kamu saat ini!</p>
+              </div>
             </div>
+            <a href="../forms/tesmental.php">
+              <button class="btn">+ Mulai kuisioner!</button>
+            </a>
           </div>
-          <a href="../forms/teskepribadian.php">
-            <button class="btn">+ Mulai kuisioner!</button>
-          </a>
+
+          <div class="card">
+            <div class="card-header">
+              <img
+                src="../assets/img/tespersonality.png"
+                alt="Tes Kepribadian"
+                class="icon">
+              <div>
+                <h3>Tes Kepribadian</h3>
+                <p>Cari tahu kepribadian kamu melalui tes ini!</p>
+              </div>
+            </div>
+            <a href="../forms/teskepribadian.php">
+              <button class="btn">+ Mulai kuisioner!</button>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="history">
+          <div class="history-header">
+            <h3>Riwayat Hasil Tes</h3>
+            <!-- <button class="lihat-btn">Lihat semua</button> -->
+          </div>
+          <p class="desc">Disini terlihat hasil tes terakhir kali kamu</p>
         </div>
 
       </div>
-
-      <div class="history">
-        <div class="history-header">
-          <h3>Riwayat Hasil Tes</h3>
-          <!-- <button class="lihat-btn">Lihat semua</button> -->
-        </div>
-        <p class="desc">Disini terlihat hasil tes terakhir kali kamu</p>
-      </div>
-
-    </div>
   </main>
 
 </body>
